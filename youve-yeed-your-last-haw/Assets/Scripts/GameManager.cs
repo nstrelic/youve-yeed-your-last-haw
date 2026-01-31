@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    int drawCountdown = 5;
+    float drawCountdown = 700f;
     int keyPressCounter = 0;
     [SerializeField]
     int keyPressWinCount = 10;
@@ -23,10 +23,15 @@ public class GameManager : MonoBehaviour
 
     public List<KeyCode> dynamicPossibleKeyCodes;
 
-    
+    public float getDrawCountdown()
+    {
+        return drawCountdown;
+    }
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         dynamicPossibleKeyCodes = new List<KeyCode>(possibleKeyCodes);
     }
