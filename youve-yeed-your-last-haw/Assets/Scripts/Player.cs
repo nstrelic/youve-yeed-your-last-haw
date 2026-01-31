@@ -10,6 +10,15 @@ public class Player : MonoBehaviour
 
     GameManager gameManager;
 
+    public KeyCode getDrawKey()
+    {
+        return drawKey;
+    }
+
+    public KeyCode getBattleKey()
+    {
+        return battleKey;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
