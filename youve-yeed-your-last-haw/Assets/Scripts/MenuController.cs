@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class MenuController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class MenuController : MonoBehaviour
                 UnityEngine.Debug.Log(typeof(MenuController).Name + "Switched to main menu screen");
                 break;
             default:
-                UnityEngine.Debug.Log(typeof(MenuController).Name + "Switched to a state we don't care about");
+                UnityEngine.Debug.Log(typeof(MenuController).Name + "Switched to " + Enum.GetName(typeof(GameState), nextState));
                 break;
         }
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class TitlesController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class TitlesController : MonoBehaviour
 
     [SerializeField]
     public TMP_Text titleText;
+
+    [SerializeField]
+    public Animator animator;
 
     public Canvas titlesCanvas;
 
@@ -29,6 +33,7 @@ public class TitlesController : MonoBehaviour
         {
             currentTitleIndex = 0;
             titleText.text = titles[currentTitleIndex];
+            animator.SetTrigger("TitleFadeZoom");
         }
     }
 
@@ -48,6 +53,22 @@ public class TitlesController : MonoBehaviour
         EventManager.changeGameStateEvent -= this.ChangeGameState;
     }
 
+    public void NextTitle()
+    {
+        if (currentTitleIndex == (titles.Length - 1))
+        {
+            titlesCanvas.enabled = false;
+            animator.enabled = false;
+            EventManager.ChangeGameState(GameState.MainMenu);
+        }
+        else
+        {
+            currentTitleIndex++;
+            titleText.text = titles[currentTitleIndex];
+            animator.SetTrigger("TitleFadeZoom");
+        }
+    }
+
     void ChangeGameState(GameState nextState)
     {
         switch(nextState)
@@ -56,9 +77,11 @@ public class TitlesController : MonoBehaviour
                 UnityEngine.Debug.Log(typeof(TitlesController).Name + "Switched to title screen");
                 currentTitleIndex = 0;
                 titlesCanvas.enabled = true;
+                animator.enabled = true;
+                animator.SetTrigger("TitleFadeZoom");
                 break;
             default:
-                UnityEngine.Debug.Log(typeof(TitlesController).Name + "Switched to a state we don't care about");
+                UnityEngine.Debug.Log(typeof(TitlesController).Name + "Switched to " + Enum.GetName(typeof(GameState), nextState));
                 break;
         }
     }
