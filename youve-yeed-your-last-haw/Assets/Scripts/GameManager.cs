@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     int keyPressCounter = 0;
     [SerializeField]
     int keyPressWinCount = 10;
+    GameState gameState = GameState.Draw;
 
     private List<KeyCode> possibleKeyCodes = new List<KeyCode> {
         KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E,
@@ -28,7 +29,10 @@ public class GameManager : MonoBehaviour
         return drawCountdown;
     }
 
-
+    public GameState getCurrentGameState()
+    {
+        return gameState;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -46,7 +50,9 @@ public class GameManager : MonoBehaviour
 public enum GameState
     {
         WaitingToStart,
-        CountdownToStart,
+        Draw,
         GamePlaying,
+        PlayerOneAttacking,
+        PlayerTwoAttacking,
         GameOver
     }
