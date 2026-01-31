@@ -6,6 +6,9 @@ public class GameName : MonoBehaviour
     [SerializeField]
     public Animator animator;
 
+    [SerializeField]
+    public AudioSource audioSrc;
+
     void OnEnable()
     {
         EventManager.changeGameStateEvent += this.ChangeGameState;
@@ -14,6 +17,11 @@ public class GameName : MonoBehaviour
     void OnDisable()
     {
         EventManager.changeGameStateEvent -= this.ChangeGameState;
+    }
+
+    public void CrackWhip()
+    {
+        audioSrc.Play();
     }
 
     public void StopAnimator()

@@ -3,7 +3,11 @@ using System;
 
 public class MenuController : MonoBehaviour
 {
+    [SerializeField]
     public Canvas mainMenuCanvas;
+
+    [SerializeField]
+    public AudioSource audioSrc;
 
     void OnEnable()
     {
@@ -31,6 +35,7 @@ public class MenuController : MonoBehaviour
     
     public void StartGame()
     {
+        audioSrc.Play();
         EventManager.ChangeGameState(GameState.WaitingToStart);
         mainMenuCanvas.enabled = false;
     }
