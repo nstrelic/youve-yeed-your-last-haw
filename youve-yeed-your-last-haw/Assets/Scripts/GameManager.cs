@@ -141,8 +141,16 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.PlayerOneAttacking || gameState == GameState.PlayerTwoAttacking)
         {
             keyPressCounter = playerOne.GetComponent<Player>().getPlayerPressCounter() - playerTwo.GetComponent<Player>().getPlayerPressCounter();
-            if (keyPressCounter >= System.Math.Abs(keyPressWinCount))
+            if (System.Math.Abs(keyPressCounter) >= keyPressWinCount)
             {
+                if (keyPressCounter < 0)
+                {
+                    Debug.Log("Player 2 Wins the Round!");
+                }
+                else
+                {
+                    Debug.Log("Player 1 Wins the Round!");
+                }
                 gameState = GameState.GameOver;
                 Debug.Log("Game Over!");
             }
