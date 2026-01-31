@@ -23,13 +23,7 @@ public class GameManager : MonoBehaviour
 
     public List<KeyCode> dynamicPossibleKeyCodes;
 
-    public enum GameState
-    {
-        WaitingToStart,
-        CountdownToStart,
-        GamePlaying,
-        GameOver
-    }
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,3 +37,11 @@ public class GameManager : MonoBehaviour
         
     }
 }
+
+public enum GameState
+    {
+        WaitingToStart,
+        CountdownToStart,
+        GamePlaying,
+        GameOver
+    }
