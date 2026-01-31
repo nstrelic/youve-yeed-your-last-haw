@@ -145,10 +145,12 @@ public class GameManager : MonoBehaviour
             {
                 if (keyPressCounter < 0)
                 {
+                    playerOne.GetComponent<Player>().snapMask();
                     Debug.Log("Player 2 Wins the Round!");
                 }
                 else
                 {
+                    playerTwo.GetComponent<Player>().snapMask();
                     Debug.Log("Player 1 Wins the Round!");
                 }
                 gameState = GameState.GameOver;

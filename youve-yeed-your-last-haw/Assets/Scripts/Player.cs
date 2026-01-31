@@ -5,6 +5,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     int playerNumber = 1;
 
+    [SerializeField]
+    GameObject mask;
+
     GameManager gameManager;
 
     int playerPressCounter = 0;
@@ -22,6 +25,11 @@ public class Player : MonoBehaviour
     public void incrementPlayerPressCounter()
     {
         playerPressCounter++;
+    }
+
+    public void snapMask()
+    {
+        mask.GetComponent<SpringJoint2D>().enabled = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
