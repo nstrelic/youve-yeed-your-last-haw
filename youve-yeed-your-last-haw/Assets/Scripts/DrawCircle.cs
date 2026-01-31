@@ -26,7 +26,6 @@ public class DrawCircle : MonoBehaviour
 
         if (gameManager.getCurrentGameState().Equals(GameState.Draw) && transform.localScale == Vector3.zero)
         {
-            keyToPress.GetComponent<KeyToPress>().setKeyToPress(KeyType.Draw, player.GetComponent<Player>().getDrawKey());
             keyToPress.SetActive(true);
         }
     }
