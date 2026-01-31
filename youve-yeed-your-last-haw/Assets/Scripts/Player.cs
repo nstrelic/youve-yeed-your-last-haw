@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public void snapMask()
     {
         mask.GetComponent<SpringJoint2D>().enabled = true;
+        mask.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
