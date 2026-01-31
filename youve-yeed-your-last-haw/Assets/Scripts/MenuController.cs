@@ -4,7 +4,7 @@ using System;
 public class MenuController : MonoBehaviour
 {
     [SerializeField]
-    public Canvas mainMenuCanvas;
+    public Canvas canvas;
 
     [SerializeField]
     public AudioSource audioSrc;
@@ -24,7 +24,7 @@ public class MenuController : MonoBehaviour
         switch(nextState)
         {
             case GameState.MainMenu:
-                mainMenuCanvas.enabled = true;
+                canvas.enabled = true;
                 UnityEngine.Debug.Log(typeof(MenuController).Name + "Switched to main menu screen");
                 break;
             default:
@@ -37,7 +37,7 @@ public class MenuController : MonoBehaviour
     {
         audioSrc.Play();
         EventManager.ChangeGameState(GameState.WaitingToStart);
-        mainMenuCanvas.enabled = false;
+        canvas.enabled = false;
     }
 
     public void ExitGame()
