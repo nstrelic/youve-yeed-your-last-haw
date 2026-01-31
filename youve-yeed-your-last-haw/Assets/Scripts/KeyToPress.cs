@@ -5,6 +5,10 @@ public class KeyToPress : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
+    [SerializeField]
+    GameObject mask;
+    [SerializeField]
+    GameObject opponentsMask;
 
     GameManager gameManager;
 
@@ -40,11 +44,33 @@ public class KeyToPress : MonoBehaviour
                 }
                 break;
             case GameState.PlayerOneAttacking:
+                displayKey(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
+                if (Input.GetKeyDown(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber())))
+                {
+                    Debug.Log("Player " + player.GetComponent<Player>().getPlayerNumber() + " pressed the correct key: " + gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
+                    if (player.GetComponent<Player>().getPlayerNumber() == 1)
+                    {
+                        opponentsMask.GetComponent<Mask>().pullMaskAway();
+                    } else
+                    {
+                        mask.GetComponent<Mask>().pullMaskTowards();
+                    }
+                    player.GetComponent<Player>().incrementPlayerPressCounter();
+                }
+                break;
             case GameState.PlayerTwoAttacking:
                 displayKey(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
                 if (Input.GetKeyDown(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber())))
                 {
                     Debug.Log("Player " + player.GetComponent<Player>().getPlayerNumber() + " pressed the correct key: " + gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
+                    if (player.GetComponent<Player>().getPlayerNumber() == 2)
+                    {
+                        opponentsMask.GetComponent<Mask>().pullMaskAway();
+                    }
+                    else
+                    {
+                        mask.GetComponent<Mask>().pullMaskTowards();
+                    }
                     player.GetComponent<Player>().incrementPlayerPressCounter();
                 }
                 break;
