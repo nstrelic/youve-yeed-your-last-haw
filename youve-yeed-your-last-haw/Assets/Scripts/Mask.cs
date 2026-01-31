@@ -9,11 +9,16 @@ public class Mask : MonoBehaviour
     {
         if (player.GetComponent<Player>().getPlayerNumber() == 1)
         {
+            // move this mask
             this.transform.position += new Vector3(1, 0, 0);
+
+            // move opponent along with the mask
         }
         else
         {
             this.transform.position += new Vector3(-1, 0, 0);
+
+            // move opponent along with the mask
         }
     }
 
