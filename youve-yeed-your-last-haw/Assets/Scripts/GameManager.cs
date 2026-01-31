@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
     {
+        TitleScreen,
+        MainMenu,
         WaitingToStart,
         CountdownToStart,
         GamePlaying,
