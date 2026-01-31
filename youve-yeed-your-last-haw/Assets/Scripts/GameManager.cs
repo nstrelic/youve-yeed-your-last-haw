@@ -5,13 +5,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int drawCountdown = 5;
 
-    public enum GameState
-    {
-        WaitingToStart,
-        CountdownToStart,
-        GamePlaying,
-        GameOver
-    }
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,3 +19,11 @@ public class GameManager : MonoBehaviour
         
     }
 }
+
+public enum GameState
+    {
+        WaitingToStart,
+        CountdownToStart,
+        GamePlaying,
+        GameOver
+    }
