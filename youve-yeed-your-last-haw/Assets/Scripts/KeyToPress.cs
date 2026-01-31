@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Linq;
 
 public class KeyToPress : MonoBehaviour
 {
@@ -8,11 +8,22 @@ public class KeyToPress : MonoBehaviour
 
     GameManager gameManager;
 
+    [SerializeField]
+    Sprite[] keySprites;
+
+    private void displayKey(KeyCode keyCode)
+    {
+        string keyName = keyCode.ToString();
+        Sprite sprite = keySprites.FirstOrDefault(s => s.name == keyName);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        keySprites = Resources.LoadAll<Sprite>("KeySprites");
     }
 
     // Update is called once per frame
@@ -21,7 +32,7 @@ public class KeyToPress : MonoBehaviour
         switch(gameManager.getCurrentGameState())
         {
             case GameState.Draw:
-                Debug.Log("P" + player.GetComponent<Player>().getPlayerNumber() + " " + gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber()));
+                displayKey(gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber()));
                 if (Input.GetKeyDown(gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber())))
                 {
                     Debug.Log("Player " + player.GetComponent<Player>().getPlayerNumber() + " pressed the correct key: " + gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber()));
@@ -30,7 +41,7 @@ public class KeyToPress : MonoBehaviour
                 break;
             case GameState.PlayerOneAttacking:
             case GameState.PlayerTwoAttacking:
-                Debug.Log("P" + player.GetComponent<Player>().getPlayerNumber() + " " + gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
+                displayKey(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
                 if (Input.GetKeyDown(gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber())))
                 {
                     Debug.Log("Player " + player.GetComponent<Player>().getPlayerNumber() + " pressed the correct key: " + gameManager.getKeyCode(KeyType.Battle, player.GetComponent<Player>().getPlayerNumber()));
