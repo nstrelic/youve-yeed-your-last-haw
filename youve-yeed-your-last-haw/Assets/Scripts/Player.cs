@@ -5,29 +5,31 @@ public class Player : MonoBehaviour
     [SerializeField]
     int playerNumber = 1;
 
-    KeyCode drawKey = KeyCode.A;
-    KeyCode battleKey = KeyCode.S;
-
     GameManager gameManager;
 
-    public KeyCode getDrawKey()
+    int playerPressCounter = 0;
+
+    public int getPlayerNumber()
     {
-        return drawKey;
+        return playerNumber;
     }
 
-    public KeyCode getBattleKey()
+    public int getPlayerPressCounter()
     {
-        return battleKey;
+        return playerPressCounter;
+    }
+
+    public void incrementPlayerPressCounter()
+    {
+        playerPressCounter++;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        drawKey = gameManager.dynamicPossibleKeyCodes[Random.Range(0, gameManager.dynamicPossibleKeyCodes.Count)];
-        gameManager.dynamicPossibleKeyCodes.Remove(drawKey);
-        battleKey = gameManager.dynamicPossibleKeyCodes[Random.Range(0, gameManager.dynamicPossibleKeyCodes.Count)];
-        gameManager.dynamicPossibleKeyCodes.Remove(battleKey);
+        gameManager.generateKeyCode(KeyType.Draw, playerNumber);
+        gameManager.generateKeyCode(KeyType.Battle, playerNumber);
     }
 
     // Update is called once per frame
