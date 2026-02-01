@@ -42,6 +42,12 @@ public class Background : MonoBehaviour
                 spriteRenderer.sprite = backgrounds[0];
                 UnityEngine.Debug.Log(typeof(Background).Name + "Switched to title or main menu screen");
                 break;
+            case GameState.WaitingToStart:
+                spriteRenderer.sprite = backgrounds[1];
+                break;
+            case GameState.Draw:
+                spriteRenderer.sprite = backgrounds[0];
+                break;
             default:
                 UnityEngine.Debug.Log(typeof(Background).Name + "Switched to " + Enum.GetName(typeof(GameState), nextState));
                 break;

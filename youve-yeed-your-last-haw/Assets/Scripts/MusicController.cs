@@ -17,16 +17,20 @@ public class MusicController : MonoBehaviour
         {
             UnityEngine.Debug.LogError("No audio source set");
         }
-        else
-        {
-            audioSrc.clip = tracks[0];
-            audioSrc.Play();
-        }
     }
 
     void OnEnable()
     {
         EventManager.changeGameStateEvent += this.ChangeGameState;
+    }
+
+    void Update()
+    {
+        if (audioSrc.clip == null)
+        {
+            audioSrc.clip = tracks[0];
+            audioSrc.Play();
+        }
     }
 
     void OnDisable()

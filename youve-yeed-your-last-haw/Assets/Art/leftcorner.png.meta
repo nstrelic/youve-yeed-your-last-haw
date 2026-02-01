@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f7b6a72ac82361a4480f3ee54fe514b9
+guid: 7f12d2b57146a5545b1b429fc1f89822
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6785366054340152818
-    second: cowboy_arm_0
+      213: 6635728143237313435
+    second: leftcorner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cowboy_arm_0
+      name: leftcorner_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 224
-        width: 131
-        height: 233
+        x: 0
+        y: 1
+        width: 640
+        height: 359
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fd40fbd9767a2e50800000000000000
-      internalID: 6785366054340152818
+      spriteID: b93f8b3b697d61c50800000000000000
+      internalID: 6635728143237313435
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cowboy_arm_0: 6785366054340152818
+      leftcorner_0: 6635728143237313435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

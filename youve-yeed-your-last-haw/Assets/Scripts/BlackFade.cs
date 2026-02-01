@@ -18,6 +18,7 @@ public class BlackFade : MonoBehaviour
     public void StopFade()
     {
         animator.SetTrigger("Idle");
+        EventManager.CowboySlide();
     }
 
     public void ChangeGameState(GameState nextState)

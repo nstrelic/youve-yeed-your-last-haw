@@ -107,3 +107,4 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8014507612894540677}
   backgrounds:
   - {fileID: 2552174375670512441, guid: 917a44422921b7c479c7b5e352323562, type: 3}
+  - {fileID: 1805724689112153035, guid: 097dc5c468898714080cd985824c6f85, type: 3}
