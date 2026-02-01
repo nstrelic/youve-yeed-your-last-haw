@@ -1,24 +1,28 @@
+using System.Collections;
 using UnityEngine;
 
 public class Mask : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
+    [SerializeField]
+    GameObject opponentPlayer;
 
     public void pullMaskAway()
     {
         if (player.GetComponent<Player>().getPlayerNumber() == 1)
         {
             // move this mask
-            this.transform.position += new Vector3(1, 0, 0);
-
+            StartCoroutine(Move(0.1f, true));
             // move opponent along with the mask
+            StartCoroutine(MovePlayer(0.1f, true));
         }
         else
         {
-            this.transform.position += new Vector3(-1, 0, 0);
-
+            // move mask
+            StartCoroutine(Move(0.1f, true));
             // move opponent along with the mask
+            StartCoroutine(MovePlayer(0.1f, true));
         }
     }
 
@@ -26,11 +30,17 @@ public class Mask : MonoBehaviour
     {
         if (player.GetComponent<Player>().getPlayerNumber() == 1)
         {
-            this.transform.position += new Vector3(-1, 0, 0);
+            // move this mask
+            StartCoroutine(Move(0.1f, false));
+            // move opponent along with the mask
+            StartCoroutine(MovePlayer(0.1f, false));
         }
         else
         {
-            this.transform.position += new Vector3(1, 0, 0);
+            // move mask
+            StartCoroutine(Move(0.1f, false));
+            // move opponent along with the mask
+            StartCoroutine(MovePlayer(0.1f, false));
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,5 +52,41 @@ public class Mask : MonoBehaviour
     void Update()
     {
         
+    }
+
+    IEnumerator Move(float timeToScale, bool pullAway)
+    {
+        float timer = 0f;
+        while (timer < timeToScale)
+        {
+            if (pullAway)
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(player.GetComponent<Player>().getPlayerNumber() == 1 ? this.transform.position.x + 1 : this.transform.position.x - 1, this.transform.position.y, this.transform.position.z), timeToScale);
+            }
+            else
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(player.GetComponent<Player>().getPlayerNumber() == 1 ? this.transform.position.x - 1 : this.transform.position.x + 1, this.transform.position.y, this.transform.position.z), timeToScale);
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    IEnumerator MovePlayer(float timeToScale, bool pullAway)
+    {
+        float timer = 0f;
+        while (timer < timeToScale)
+        {
+            if (pullAway)
+            {
+                opponentPlayer.transform.position = Vector3.MoveTowards(opponentPlayer.transform.position, new Vector3(opponentPlayer.GetComponent<Player>().getPlayerNumber() == 1 ? opponentPlayer.transform.position.x - 1 : opponentPlayer.transform.position.x + 1, player.transform.position.y, player.transform.position.z), timeToScale);
+            }
+            else
+            {
+                opponentPlayer.transform.position = Vector3.MoveTowards(opponentPlayer.transform.position, new Vector3(opponentPlayer.GetComponent<Player>().getPlayerNumber() == 1 ? opponentPlayer.transform.position.x + 1 : opponentPlayer.transform.position.x - 1, player.transform.position.y, player.transform.position.z), timeToScale);
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 }

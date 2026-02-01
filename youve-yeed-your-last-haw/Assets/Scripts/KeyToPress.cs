@@ -9,6 +9,8 @@ public class KeyToPress : MonoBehaviour
     GameObject mask;
     [SerializeField]
     GameObject opponentsMask;
+    [SerializeField]
+    LineRenderer opponentsMaskLineRenderer;
 
     GameManager gameManager;
 
@@ -40,6 +42,7 @@ public class KeyToPress : MonoBehaviour
                 if (Input.GetKeyDown(gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber())))
                 {
                     Debug.Log("Player " + player.GetComponent<Player>().getPlayerNumber() + " pressed the correct key: " + gameManager.getKeyCode(KeyType.Draw, player.GetComponent<Player>().getPlayerNumber()));
+                    opponentsMaskLineRenderer.enabled = true;
                     EventManager.ChangeGameState(player.GetComponent<Player>().getPlayerNumber() == 1 ? GameState.PlayerOneAttacking : GameState.PlayerTwoAttacking);
                 }
                 break;
