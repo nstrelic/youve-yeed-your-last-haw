@@ -26,7 +26,7 @@ public class GameName : MonoBehaviour
 
     public void StopAnimator()
     {
-        animator.enabled = false;
+        animator.SetTrigger("Float");
     }
 
     public void ChangeGameState(GameState nextState)
@@ -39,6 +39,7 @@ public class GameName : MonoBehaviour
                 UnityEngine.Debug.Log(typeof(GameName).Name + "Switched to main menu screen");
                 break;
             default:
+                animator.enabled = false;
                 UnityEngine.Debug.Log(typeof(GameName).Name + "Switched to " + Enum.GetName(typeof(GameState), nextState));
                 break;
         }

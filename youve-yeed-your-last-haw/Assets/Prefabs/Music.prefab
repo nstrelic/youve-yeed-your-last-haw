@@ -143,4 +143,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicController
   audioSrc: {fileID: 6241046423729028650}
-  tracks: []
+  tracks:
+  - {fileID: 8300000, guid: a1be8ba49ca6c6a4c96943521733f751, type: 3}

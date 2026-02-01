@@ -22,6 +22,7 @@ public class MusicController : MonoBehaviour
         else
         {
             audioSrc.clip = tracks[0];
+            audioSrc.Play();
         }
     }
 
@@ -39,7 +40,6 @@ public class MusicController : MonoBehaviour
     {
         switch(nextState)
         {
-            case GameState.TitleScreen:
             case GameState.MainMenu:
                 UnityEngine.Debug.Log(typeof(Background).Name + "Switched to title or main menu screen");
                 break;
