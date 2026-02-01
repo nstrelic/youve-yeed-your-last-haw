@@ -4,6 +4,9 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Arm : MonoBehaviour
 {
+    [SerializeField]
+    GameObject positionToMove;
+
     private void OnEnable()
     {
         EventManager.changeGameStateEvent += OnChangeGameState;
@@ -69,7 +72,7 @@ public class Arm : MonoBehaviour
         float timer = 0f;
         while (timer < timeToScale)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(playerNumber == 1 ? player.transform.position.x + 3.5f : player.transform.position.x - 3.5f, player.transform.position.y, player.transform.position.z), timeToScale);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, new Vector3(positionToMove.transform.position.x, player.transform.position.y, player.transform.position.z), timeToScale);
             timer += Time.deltaTime;
             yield return null;
         }

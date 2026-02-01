@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     GameObject playerOne;
     [SerializeField]
     GameObject playerTwo;
+    [SerializeField]
+    public float pullAwayIncrement = 0.5f;
     int keyPressCounter = 0;
     
     GameState gameState = GameState.Draw;

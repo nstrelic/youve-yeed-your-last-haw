@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 
     int playerPressCounter = 0;
 
+    public float snapSpeed = 10f;
+    private Rigidbody2D rb;
+
     public int getPlayerNumber()
     {
         return playerNumber;
@@ -29,14 +32,16 @@ public class Player : MonoBehaviour
 
     public void snapMask()
     {
-        mask.GetComponent<SpringJoint2D>().enabled = true;
+        mask.GetComponent<Rigidbody2D>().linearVelocity = playerNumber == 1 ? -transform.right * snapSpeed : transform.right * snapSpeed;
         mask.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        mask.GetComponent<Collider2D>().enabled = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        rb = GetComponent<Rigidbody2D>();
         gameManager.generateKeyCode(KeyType.Draw, playerNumber);
         gameManager.generateKeyCode(KeyType.Battle, playerNumber);
     }
