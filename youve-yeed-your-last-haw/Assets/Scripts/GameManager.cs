@@ -126,12 +126,6 @@ public class GameManager : MonoBehaviour
     {
         // back to draw state
         EventManager.ChangeGameState(GameState.Draw);
-
-        // reset player position and draw circle
-        playerOne.transform.position = playerOneInitPosition;
-        playerTwo.transform.position = playerTwoInitPosition;
-
-        mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, cameraInitSize, ref currentVelocity, 0.2f);
     }
 
     private void OnEnable()
@@ -147,6 +141,24 @@ public class GameManager : MonoBehaviour
     public void OnChangeGameState(GameState nextState)
     {
         gameState = nextState;
+        if (nextState == GameState.Draw)
+        {
+            // regenerate keys
+            dynamicPossibleKeyCodes = new List<KeyCode>(possibleKeyCodes);
+            generateKeyCode(KeyType.Draw, 1);
+            generateKeyCode(KeyType.Draw, 2);
+            generateKeyCode(KeyType.Battle, 1);
+            generateKeyCode(KeyType.Battle, 2);
+
+            // reset player position and draw circle
+            playerOne.transform.position = playerOneInitPosition;
+            playerTwo.transform.position = playerTwoInitPosition;
+
+            mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, cameraInitSize, ref currentVelocity, 0.2f);
+
+            playerOne.transform.parent.gameObject.SetActive(true);
+            playerTwo.transform.parent.gameObject.SetActive(true);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -177,7 +189,6 @@ public class GameManager : MonoBehaviour
                     if (gameState == GameState.PlayerOneAttacking)
                     {
                         resetToDraw();
-
                     }
                     // p1 attacked, p2 lost
                     else
