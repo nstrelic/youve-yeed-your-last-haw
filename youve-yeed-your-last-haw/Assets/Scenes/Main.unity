@@ -518,17 +518,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8320477306237699694, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
-      propertyPath: m_Name
-      value: Players
+    - target: {fileID: 4846822253388894922, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8320477306237699694, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
+    - target: {fileID: 6182843903545926433, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8320477306237699694, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
-      propertyPath: m_TagString
-      value: Player
+      propertyPath: m_Name
+      value: Players
       objectReference: {fileID: 0}
     - target: {fileID: 8991326359128391129, guid: 9585a6cb450c5ce40935e52e3facbfe5, type: 3}
       propertyPath: m_LocalPosition.x
