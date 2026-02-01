@@ -21,11 +21,11 @@ public class MaskRenderer : MonoBehaviour
 
         // Always draw the line between face and mask
         line.positionCount = 2;
-        line.SetPosition(0, mask.localPosition);
-        line.SetPosition(1, faceAnchor.localPosition);
+        line.SetPosition(0, mask.position);
+        line.SetPosition(1, faceAnchor.position);
         
         // When mask reaches the face, clear the line
-        float dist = Vector3.Distance(mask.localPosition, faceAnchor.localPosition);
+        float dist = Vector3.Distance(mask.position, faceAnchor.position);
 
         if (dist <= snapCompleteDistance)
         {
