@@ -11,8 +11,13 @@ public class GameManager : MonoBehaviour
     GameObject playerOne;
     [SerializeField]
     GameObject playerTwo;
+    [SerializeField]
+    public float pullAwayIncrement = 0.5f;
     int keyPressCounter = 0;
-    
+    Camera mainCamera;
+
+    private float currentVelocity;
+
     GameState gameState = GameState.Draw;
 
     private List<KeyCode> possibleKeyCodes = new List<KeyCode> {
@@ -132,6 +137,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         dynamicPossibleKeyCodes = new List<KeyCode>(possibleKeyCodes);
+        mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -141,6 +147,9 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.PlayerOneAttacking || gameState == GameState.PlayerTwoAttacking)
         {
             keyPressCounter = playerOne.GetComponent<Player>().getPlayerPressCounter() - playerTwo.GetComponent<Player>().getPlayerPressCounter();
+            float targetSize = System.Math.Abs(keyPressCounter / 1.5f)  < 1.7f ? 1.7f : System.Math.Abs(keyPressCounter / 1.5f) >= 5.4f ? 5.4f : System.Math.Abs(keyPressCounter / 1.5f);
+            mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, targetSize, ref currentVelocity, 0.2f);
+
             if (System.Math.Abs(keyPressCounter) >= keyPressWinCount)
             {
                 if (keyPressCounter < 0)
