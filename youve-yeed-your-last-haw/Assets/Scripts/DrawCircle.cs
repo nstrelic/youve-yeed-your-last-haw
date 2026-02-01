@@ -24,9 +24,10 @@ public class DrawCircle : MonoBehaviour
         // Start the scaling coroutine when the object starts
         StartCoroutine(ScaleOverTime(Vector3.zero, gameManager.getDrawCountdown()));
 
-        if (gameManager.getCurrentGameState().Equals(GameState.Draw) && transform.localScale == Vector3.zero)
+        if (gameManager.getCurrentGameState().Equals(GameState.Draw) && transform.localScale.x <= 0.1f)
         {
             keyToPress.SetActive(true);
+            this.enabled = false;
         }
     }
 

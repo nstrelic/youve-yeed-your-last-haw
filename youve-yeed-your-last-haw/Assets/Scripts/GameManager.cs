@@ -145,16 +145,38 @@ public class GameManager : MonoBehaviour
             {
                 if (keyPressCounter < 0)
                 {
-                    playerOne.GetComponent<Player>().snapMask();
+                    // player 1 attacked, p2 recover
+                    if (gameState == GameState.PlayerOneAttacking)
+                    {
+                        EventManager.ChangeGameState(GameState.Draw);
+                    }
+                    // p1 attacked, p2 lost
+                    else
+                    {
+                        playerOne.GetComponent<Player>().snapMask();
+                        gameState = GameState.GameOver;
+                        Debug.Log("Game Over!");
+                    }
+                        
                     Debug.Log("Player 2 Wins the Round!");
                 }
                 else
                 {
-                    playerTwo.GetComponent<Player>().snapMask();
+                    // player 2 attacked, p1 recover
+                    if (gameState == GameState.PlayerTwoAttacking)
+                    {
+                        EventManager.ChangeGameState(GameState.Draw);
+                    }
+                    else
+                    {
+                        playerTwo.GetComponent<Player>().snapMask();
+                        gameState = GameState.GameOver;
+                        Debug.Log("Game Over!");
+                    }
+                    
                     Debug.Log("Player 1 Wins the Round!");
                 }
-                gameState = GameState.GameOver;
-                Debug.Log("Game Over!");
+                
             }
         }
     }
