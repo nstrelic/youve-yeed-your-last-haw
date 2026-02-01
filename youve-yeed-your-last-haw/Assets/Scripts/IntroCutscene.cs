@@ -3,7 +3,6 @@ using System;
 
 public class IntroCutscene : MonoBehaviour
 {
-    [SerializeField]
     public Canvas canvas;
     void OnEnable()
     {

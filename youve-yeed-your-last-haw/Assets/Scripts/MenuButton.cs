@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 public class MenuButton : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
     public Animator animator;
 
     void OnStart()

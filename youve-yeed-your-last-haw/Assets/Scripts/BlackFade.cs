@@ -3,7 +3,6 @@ using System;
 
 public class BlackFade : MonoBehaviour
 {
-    [SerializeField]
     public Animator animator;
 
     void OnEnable()

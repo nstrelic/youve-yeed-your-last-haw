@@ -5,13 +5,10 @@ using System;
 public class TitlesController : MonoBehaviour
 {
 
-    [SerializeField]
     public string[] titles;
 
-    [SerializeField]
     public TMP_Text titleText;
 
-    [SerializeField]
     public Animator animator;
 
     public Canvas titlesCanvas;

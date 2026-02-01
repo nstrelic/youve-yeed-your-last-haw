@@ -3,10 +3,8 @@ using System;
 
 public class MusicController : MonoBehaviour
 {
-    [SerializeField]
     public AudioSource audioSrc;
 
-    [SerializeField]
     public AudioClip[] tracks;
 
     void Start()
@@ -43,8 +41,10 @@ public class MusicController : MonoBehaviour
             case GameState.MainMenu:
                 UnityEngine.Debug.Log(typeof(Background).Name + "Switched to title or main menu screen");
                 break;
-            default:
+            case GameState.WaitingToStart:
                 audioSrc.Stop();
+                audioSrc.clip = tracks[1];
+                audioSrc.Play();
                 UnityEngine.Debug.Log(typeof(Background).Name + "Switched to " + Enum.GetName(typeof(GameState), nextState));
                 break;
         }

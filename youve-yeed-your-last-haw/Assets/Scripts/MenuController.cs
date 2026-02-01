@@ -3,10 +3,8 @@ using System;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField]
     public Canvas canvas;
 
-    [SerializeField]
     public AudioSource audioSrc;
 
     void OnEnable()

@@ -3,10 +3,8 @@ using System;
 
 public class Background : MonoBehaviour
 {
-    [SerializeField]
     public SpriteRenderer spriteRenderer;
 
-    [SerializeField]
     public Sprite[] backgrounds;
 
     void Start()

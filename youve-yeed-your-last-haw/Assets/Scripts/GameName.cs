@@ -3,10 +3,8 @@ using System;
 
 public class GameName : MonoBehaviour
 {
-    [SerializeField]
     public Animator animator;
 
-    [SerializeField]
     public AudioSource audioSrc;
 
     void OnEnable()
