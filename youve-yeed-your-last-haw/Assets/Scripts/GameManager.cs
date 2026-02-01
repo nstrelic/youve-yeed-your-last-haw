@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private float currentVelocity;
 
-    GameState gameState = GameState.Draw;
+    GameState gameState = GameState.TitleScreen;
 
     private List<KeyCode> possibleKeyCodes = new List<KeyCode> {
         KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E,
