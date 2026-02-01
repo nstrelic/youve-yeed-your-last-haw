@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     int keyPressCounter = 0;
     Camera mainCamera;
 
+    Vector3 playerOneInitPosition;
+    Vector3 playerTwoInitPosition;
+    float cameraInitSize;
+
     private float currentVelocity;
 
     GameState gameState = GameState.Draw;
@@ -118,6 +122,18 @@ public class GameManager : MonoBehaviour
         return KeyCode.None;
     }
 
+    private void resetToDraw()
+    {
+        // back to draw state
+        EventManager.ChangeGameState(GameState.Draw);
+
+        // reset player position and draw circle
+        playerOne.transform.position = playerOneInitPosition;
+        playerTwo.transform.position = playerTwoInitPosition;
+
+        mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, cameraInitSize, ref currentVelocity, 0.2f);
+    }
+
     private void OnEnable()
     {
         EventManager.changeGameStateEvent += OnChangeGameState;
@@ -138,6 +154,9 @@ public class GameManager : MonoBehaviour
     {
         dynamicPossibleKeyCodes = new List<KeyCode>(possibleKeyCodes);
         mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        playerOneInitPosition = playerOne.transform.position;
+        playerTwoInitPosition = playerTwo.transform.position;
+        cameraInitSize = mainCamera.orthographicSize;
     }
 
     // Update is called once per frame
@@ -157,7 +176,8 @@ public class GameManager : MonoBehaviour
                     // player 1 attacked, p2 recover
                     if (gameState == GameState.PlayerOneAttacking)
                     {
-                        EventManager.ChangeGameState(GameState.Draw);
+                        resetToDraw();
+
                     }
                     // p1 attacked, p2 lost
                     else
@@ -174,7 +194,7 @@ public class GameManager : MonoBehaviour
                     // player 2 attacked, p1 recover
                     if (gameState == GameState.PlayerTwoAttacking)
                     {
-                        EventManager.ChangeGameState(GameState.Draw);
+                        resetToDraw();
                     }
                     else
                     {
