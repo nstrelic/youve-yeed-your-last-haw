@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
     GameObject playerTwo;
     [SerializeField]
     public float pullAwayIncrement = 0.5f;
+    [SerializeField]
+    public GameObject blackBars;
     int keyPressCounter = 0;
     Camera mainCamera;
 
     Vector3 playerOneInitPosition;
     Vector3 playerTwoInitPosition;
-    float cameraInitSize;
 
     private float currentVelocity;
 
@@ -154,10 +155,10 @@ public class GameManager : MonoBehaviour
             playerOne.transform.position = playerOneInitPosition;
             playerTwo.transform.position = playerTwoInitPosition;
 
-            mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, cameraInitSize, ref currentVelocity, 0.2f);
-
             playerOne.transform.parent.gameObject.SetActive(true);
             playerTwo.transform.parent.gameObject.SetActive(true);
+            blackBars.SetActive(true);
+            
         }
     }
 
@@ -168,12 +169,15 @@ public class GameManager : MonoBehaviour
         mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         playerOneInitPosition = playerOne.transform.position;
         playerTwoInitPosition = playerTwo.transform.position;
-        cameraInitSize = mainCamera.orthographicSize;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameState == GameState.Draw)
+        {
+            mainCamera.orthographicSize = Mathf.SmoothDamp(mainCamera.orthographicSize, 1.8f, ref currentVelocity, 0.2f);
+        }
         // evaluate battle counter
         if (gameState == GameState.PlayerOneAttacking || gameState == GameState.PlayerTwoAttacking)
         {
