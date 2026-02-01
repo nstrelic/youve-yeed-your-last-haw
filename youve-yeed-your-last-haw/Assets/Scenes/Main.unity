@@ -207,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 209259369}
     - target: {fileID: 2540324930871971850, guid: cf4ddf0d8a68f6a459636394efa045ac, type: 3}
       propertyPath: pullAwayIncrement
-      value: 0.01
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3548396144560944820, guid: cf4ddf0d8a68f6a459636394efa045ac, type: 3}
       propertyPath: m_LocalPosition.x
